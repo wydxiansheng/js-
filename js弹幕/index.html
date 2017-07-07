@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>弹幕墙</title>
+</head>
+<style type="text/css">
+	.screen_container{
+		position: relative;
+		width: 600px;
+		height: 400px;
+		margin: 30px auto;
+		background: #000;
+		overflow: hidden;
+		}
+	.screen_toolbar{
+		width: 600px;
+		margin: 20px auto;
+		text-align: center;
+		}
+</style>
+<body>
+				<div class="screen_container bullet"></div>
+				<div class="screen_toolbar">
+						<input id="screenBulletText" type="text" placeholder="请输入弹幕内容"/>
+						<button class="send">发射</button>
+						<button class="clear">关闭弹幕</button>
+				</div>
+</body>
+<script src="../jquery-1.10.1.min.js"></script>
+<script>
+	function createScreenbullet(text) {
+		var jqueryDom = $("<div class='bullet'>" + text + "</div>");
+		var fontColor = "rgb(" + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random()) + ")";
+		var fontSize = Math.floor((Math.random() + 1) * 24) + "px";
+		var left = $(".screen_container").width() + "px";
+		var top = Math.floor(Math.random() * 400) + "px";
+		top = parseInt(top) > 352 ? "352px" : top;
+		jqueryDom.css({
+		"position": 'absolute',
+		"color": fontColor,
+		"font-size": fontSize,
+		"left": left,
+		"top": top
+		});
+		$(".screen_container").append(jqueryDom);
+		return jqueryDom;
+	}
+
+	function addInterval(jqueryDom) {
+		var left = jqueryDom.offset().left - $(".screen_container").offset().left;
+		var timer = setInterval(function () {
+		left--;
+		jqueryDom.css("left", left + "px");
+		if (jqueryDom.offset().left + jqueryDom.width() < $(".screen_container").offset().left) {
+		jqueryDom.remove();
+		clearInterval(timer);
+		}
+		}, 10);
+	
+	}	
+	$(".send").on("click", function () {
+		// 创建弹幕
+		var jqueryDom = createScreenbullet($("#screenBulletText").val());
+		// 添加定时任务
+		addInterval(jqueryDom);
+	});
+	$(".clear").on("click", function () {
+        $(".screen_container").text("");  //直接给弹幕框附一个空值
+	});
+
+
+
+</script>
+</html>
