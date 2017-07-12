@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>input</title>
+</head>
+<style type="text/css">
+	.dv1 input{
+		width: 30px;
+		height: 30px;
+	}
+</style>
+<body>
+    <!-- 思路
+
+ 			首先获取所有的input的，保存其index      var index = $(" input ").index();
+
+			输入完成光标跳入index+1；
+
+			删除：：：如果 keyCode 是删除键的值则 index-1；光标返回前一个，值为空； -->
+	
+	<!-- 简单粗暴 -->
+
+	<div class="dv1">
+	    <!-- 最大长度是1 -->
+       <input type="number" name="dadada" maxlength="1">
+       <input type="number" name="dadada" maxlength="1">
+       <input type="number" name="dadada" maxlength="1">
+       <input type="number" name="dadada" maxlength="1">
+       <input type="number" name="dadada" maxlength="1"> 
+       <input type="number" name="dadada" maxlength="1">  
+       <input type="number" name="dadada" maxlength="1">  
+       <input type="number" name="dadada" maxlength="1">  
+       <input type="number" name="dadada" maxlength="1">  
+       <input type="number" name="dadada" maxlength="1">            
+    </div>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript">
+    	function drawIng(){
+    		$(".dv1 input").keyup(function(e){
+		    			var index = $(this).index();
+			    		if(e.keyCode === 8||e.keyCode ===46){
+			    			$(this).val("");
+			    			$(".dv1 input").eq(index-1).focus();
+			    		}else{
+			    			$(".dv1 input").eq(index+1).focus();
+			    			$(this).addClass("on");
+			    		}
+    		}
+    	)};
+
+     var dazzArr = $(".dv1 input[name=dadada]");
+     for(var i=0;i<dazzArr.length;i++){
+     	var dazzVal = $(dazzArr[i]).val();
+     	console.log(dazzVal);
+     }
+        
+
+drawIng();
+    </script>
+</body>
+</html>
