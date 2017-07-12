@@ -1,0 +1,47 @@
+<center><!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title>js判断图片是否加载完成</title>
+</head>
+<body>
+    		<!-- 判断图片是否加载完成在我们前端中是很重要的 比如一个瀑布流，你需要在整个文档流中的所有图片加载完成在去执行瀑布流 这样不会有bug -->
+        
+
+
+
+ 		<!-- 简单粗暴js -->
+        <script type="text/javascript">
+
+			$('img').onload = function() {
+
+				//运行某某
+
+			}
+
+		</script>
+
+		<!-- 简单暴力jquery-->
+
+		<script type="text/javascript">
+
+			$(function(){
+
+			$('.pic1').each(function() {
+
+			$(this).load(function(){
+
+			$(this).fadeIn();
+
+			});
+
+			});
+
+		})
+
+</script>
+
+
+
+</body>
+</html></center>

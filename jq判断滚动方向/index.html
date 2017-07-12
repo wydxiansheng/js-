@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>jq判断滚动方向</title>
+</head>
+<body>
+				<!-- 在我们的前端项目中，不少效果都需要绑定window的scroll事件来用,所以经常要判断滚动的方向是向上还是向下 -->
+				<!-- 简短粗暴 -->
+<script type="text/javascript">
+				$(window).scroll(function(){
+
+					var before = $(window).scrollTop();
+
+					$(window).scroll(function() {
+
+					var after = $(window).scrollTop();
+
+					if (before<after) {
+
+						console.log('上');
+
+						before = after;
+
+					};
+
+					if (before>after) {
+
+						console.log('下');
+
+						before = after;
+
+					};
+
+				});	
+
+
+	
+</script>
+
+});
+</body>
+</html>
